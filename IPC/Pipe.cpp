@@ -15,11 +15,12 @@
 
 const int	CPipe::INVALID = -1;
 
-CPipe::CPipe() 
-	: fds[READ](INVALID), fds[WRITE](INVALID) {
+CPipe::CPipe(void){
+	fds[READ]=INVALID;
+	fds[WRITE]=INVALID;
 }
 
-CPipe::~CPipe(){
+CPipe::~CPipe(void){
 }
 
 bool	CPipe::Create(){
@@ -42,7 +43,7 @@ void	CPipe::Recv(char* buf, size_t siz){
 	read(fds[READ], buf, siz);
 }
 
-int		CPipe::FD(TYPE type) const {
+int		CPipe::FD(CPipe::TYPE type) const {
 	return(fds[type]);
 }
 

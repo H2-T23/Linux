@@ -20,8 +20,8 @@ private:
 	int		fds[NUM];
 	
 public:
-	CPipe();
-	~CPipe();
+	CPipe(void);
+	~CPipe(void);
 
 public:
 	bool	Create();
@@ -30,7 +30,7 @@ public:
 	void	Recv(char* buf, size_t siz);
 	
 public:
-	int		FD(TYPE type);
+	int		FD(CPipe::TYPE type) const;
 };
 
 #endif//PIPE_H_
