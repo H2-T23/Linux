@@ -11,7 +11,9 @@
 
 namespace DebugHelper
 {
-	void	dump(unsigned char*, size_t);
+	void	trace(const char* fmt, ...);
+	void	dumpEx(const unsigned char* buf, const size_t ofs, const size_t siz);
+	void	dump(const unsigned char*, const size_t siz);
 }
 
 

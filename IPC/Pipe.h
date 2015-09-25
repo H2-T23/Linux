@@ -26,8 +26,8 @@ public:
 public:
 	bool	Create();
 	void	Close();
-	void	Send(const char* buf, size_t siz);
-	void	Recv(char* buf, size_t siz);
+	bool	Send(const char* buf, size_t siz);
+	bool	Recv(char* buf, size_t siz);
 	
 public:
 	int		FD(CPipe::TYPE type) const;

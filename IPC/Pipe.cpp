@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -27,6 +28,8 @@ bool	CPipe::Create(){
 	if( pipe(fds) < 0 ){
 		return false;
 	}
+	//printf("%u\n",fcntl(fds[READ], F_GETPIPE_SZ));
+	//printf("%u\n",fcntl(fds[WRITE], F_GETPIPE_SZ));
 	return true;
 }
 
@@ -35,12 +38,20 @@ void	CPipe::Close(){
 	close( fds[READ] );
 }
 
-void	CPipe::Send(const char* buf, size_t siz){
-	write(fds[WRITE], buf, siz);
+bool	CPipe::Send(const char* buf, size_t siz){
+	int ret = write(fds[WRITE], buf, siz);
+	if( ret == int(siz) ){
+		return true;
+	}
+	return false;
 }
 
-void	CPipe::Recv(char* buf, size_t siz){
-	read(fds[READ], buf, siz);
+bool	CPipe::Recv(char* buf, size_t siz){
+	int ret = read(fds[READ], buf, siz);
+	if( ret == int(siz) ){
+		return true;
+	}
+	return false;
 }
 
 int		CPipe::FD(CPipe::TYPE type) const {
