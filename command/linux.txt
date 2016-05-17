@@ -1,0 +1,241 @@
+
+
+<general directory structur>
+	/
+	|
+	+--	bin/
+	|
+	+--	boot/
+	|
+	+--	dev/
+	|
+	+--	etc/
+		+--	opt/
+		+--	X11/
+		+--	sgml/
+		+--	xml/
+	|
+	+--	home/
+	|
+	+--	lib/
+	|
+	+--	mnt/
+	|
+	+--	media/
+	|
+	+--	opt/
+	|
+	+--	proc/
+	|
+	+--	root/
+	|
+	+--	sbin/
+	|
+	+--	tmp/
+	|
+	+--	srv/
+	|
+	+--	usr/
+		+--	bin/
+		+--	include/
+		+--	lib/
+		+--	sbin/
+		+--	share/
+		+--	src/
+		+--	X11R6/
+		+--	local/
+	|
+	+--	var/
+		+--	lock/
+		+--	log/
+		+--	mail/
+		+--	run/
+		+--	spool/
+			+--	mail/
+		+--	tmp/
+
+
+<command>
+	<file system>
+		<file>
+			cat
+			cp
+			mv
+			rm
+			find
+			local
+			touch
+		<directory>
+			ls
+			mkdir
+			rmdir
+			pwd
+			cd
+			ln
+		<viewer>
+			cat
+			view
+			more
+			less
+		<grep>
+			grep
+		<sed>
+			sed
+		<awk>
+			awk
+		<permission>
+			chmod
+			chown
+			chgrp
+	<user>
+		id
+		useradd
+		userdel
+		passwd
+		groupadd
+		groupdel
+		su
+		sudo
+		shutdown
+		exit
+	<manual>
+		man
+		info
+	<other>
+		type
+		which
+		who
+		alias
+		unalias
+
+
+<開発用ユーザ追加>
+	/etc/group
+	/etc/shadow
+
+	// 既存グループの確認
+	# cat /etc/group
+
+	// 既存ユーザの確認
+	# cut -d: -f1 /etc/group
+
+	// グループの追加
+	# groupadd $group-name
+
+	// グループにユーザ追加
+	# adduser -g $group-name $user-name
+
+
+<デスクトップ環境を切り替える>
+	
+	# update-alternatives --config x-session-manager
+
+
+<system>
+	<version>
+		cat /proc/version
+		uname -a
+		cat /etc/debian_version
+
+
+<package>
+	<search>
+		apt-cache search g++
+
+	<Install>
+		apt-get install g++
+
+<g++>
+	<version>
+		g++ --versioin
+	<c>
+		g++ -c sr.cpp
+	<o>
+		g++ src.cpp -o src.exe
+	<I>
+		g++ -I/usr/local/include src.cpp
+	<shared>
+		g++ -shared -o lib.so src.cpp
+	<L>
+		g++ -L/usr/local/lib -L
+	<W>
+		g++ -Wall src.cpp
+	<std>
+		g++ -std=c++11 src.cpp
+		g++ -std=c++14 src.cpp
+
+
+<C++1y/C++14 Support in GCC>
+	GCC has support for the latest revision of the C++ standard, which was published in 2014
+
+	C++14 features are available as part of th "mainline" GCC compiler in the trunk of GCC's Subversion repository and
+	in GCC 4.8 and later. To enable C++14 support, and the command-line parameter -std=c++14 to your g++ command line.
+	Or, to enable GNU extensions in addition to C++14 extensions, add -std=gnu++14 to your g++ command line.
+
+	Important: Because the final ISO C++14 standard was only recently published, GCC's support is expermental.
+		No attempt will be made to maintain backward compatibility with implementations of C++14 features that do not reflect the final standard.
+
+	C++14 Language Features
+
+	The following table lists new language features that are part of the C++14 standard.
+	The "Proposal" column provides a link to the ISO C++ committee proposal that describes the feature,
+	while the "Available in GCC?" column indicates the first version of GCC that contains an implementation 
+	of the feature(if it has been implementend).
+
+
+	[Language Feature]		[Proposal]		[Available in GCC?]		[SD-6 Feature Test]
+
+	Tweak to certain C++ 	N3323			4.9						
+	contextual conversions
+
+	Binary literals			N3472			4.3(GNU)				__cpp_binary_literals		>= 201304
+											4.9(N3472)
+
+	Return type deduction	N3638			4.8(N3386)				__cpp_decltype_auto			>= 201304
+	for normal functions
+
+	Generalized lambda 		N3648			4.5(partial)			__cpp_ini_captures			>= 201304
+	capture(initcapture)					4.9(N3648)	
+
+	Generic(polymorphic)	N3649			4.9						__cpp_generic_lambdas		>= 201304
+	lambda expressions
+
+	Variable templates		N3651			5.0						__cpp_variable_templates	>= 201304
+
+	Relaxing reuirements 	N3652			5.0						__cpp_constexpr				>= 201304
+	on constexpr functions
+
+	Member initalizers and	N3653			5.0						__cpp_aggregate_nsdmi		>= 201304
+	aggregates
+
+	Clarifying memory		N3664			N/A
+	allocation
+	
+	Sized deallcation		N3778			5.0						__cpp_sized_deallocation	>= 201309			
+
+	[[deprecated]]			N3760			4.9(N3797)				__has_cpp_attribute(deprecated)	>= 201309 
+	attribute
+
+	Single-quotatioin-		N3781			4.9(N3797)				__cpp_digit_separator		>= 201309
+	mark as a digit 
+	separator
+
+
+	This feature was briefly part of the C++14 working paper, 
+	but was not part of the published standard; as a result; it has been removed from the complier.
+
+
+	[Language Feature]		[Proposal]		[Available in GCC?]
+	
+	Runtime-sized arrarys	N3639			?.?(GNU VLAs)			__cpp_runtime_arrays		>= 198712
+	with automatic storage					4.9(N3639)
+	duration								5.0(GNU VLAs)
+	(Removed from the
+		standard)
+
+	
+<C++14 Library Features>
+	The status of the library implementation can be tracked in this table.
+
+	
+	

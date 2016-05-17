@@ -1,0 +1,63 @@
+ssh
+
+sshd
+ssh
+ssh-keygen
+ssh-agent
+
+	# generate public key and private key
+	> ssh-keygen -t rsa -C test@example.com
+	> ls
+	id_rsa  id_ras.pub
+
+			id_rsa		: private key
+			id_rsa.pub	: public key
+
+	> chmod 600 id_rsa
+	> ls -la id_rsa*
+	-rw------- 1 id_rsa
+	-rw-r--r-- 1 id_rsa.pub
+
+
+	# ssh client config file
+	> vi ~/.ssh/config
+
+		Host github
+			HostName		github.com
+			IdentityFile	~/.ssh/id_rsa
+			User			git
+	
+
+	# WEB Browser www.github.com
+	SSH Keys -> Add Key
+		> pbcopy < ~/.ssh/id_rsa.pub
+
+	> ssh -T git@github.com
+
+
+usage:	ssh-keygen	[-p] 
+					[-b bits] 
+					[-t dsa | ecdsa | ed25519 | rsa | rsa1] 
+					[-N new passphrase] 
+					[-C comment]
+					[-f output_keyfile]
+
+		ssh-keygen	-p [-P old_passpharse] [-N new_passpharse] [-f keyfile]
+		ssh-keygen	-i [-m key_format] [-f input_keyfile]
+		ssh-keygen	-e [-m key_format] [-f input_keyfile]
+		ssh-keygen	-y [-f input_keyfile]
+		ssh-keygen	-c [-P passpharse] [-C comment] [-f keyfile]
+		ssh-keygen	-l [-f input_keyfile]
+		ssh-keygen	-B [-f input_keyfile]
+		ssh-keygen	-D pkcs11
+		ssh-keygen	-F hostname [-f know_hosts_file] [-l]
+		ssh-keygen	-G hostname [-v] [-b bits] [-M memory] [-S start_point]
+		ssh-keygen	-T output_file -f input_file [-v] [-a rounds] [-J num_lines] [-j start_line] [-K checkpt] [-W generator]
+		ssh-keygen	-s ca_key -I certificate_identity [-h] [-n principals] [-O option] [-V validity_interval] [-z serial_number] file ...
+		ssh-keygen	-L [-f input_keyfile]
+		ssh-keygen	-A
+		ssh-keygen	-k -f krl_file [-u] [-s ca_public] [-z version_number] file ...
+		ssh-keygen	-Q -f krl_file file ...
+
+
+

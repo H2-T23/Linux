@@ -1,0 +1,298 @@
+
+https://github.com/H2-T23/garage.git
+git@github.com:H2-T23/garage.git
+
+.gitconfig
+	[user]
+		name = Your Name
+		email = you@example.com
+
+
+ssh
+	~/.ssh/config
+		Host	github.com							# 別名
+			HostName		github.com				# ホスト名
+			User			git						# ユーザ名
+			IdentityFile	~/.ssh/id_ras.github	# 秘密鍵
+			Port			22						# ポート番号
+
+		> git clone git@github.com:H2-T23/garage.git
+
+git
+
+	config
+		--global user.email "you@example.com"
+		--global user.name "Your Name"
+
+
+	init
+
+	clone
+		WEB:https://github.com/$(UserName)/$(RepositoryName).git
+
+
+
+	push
+
+	pull
+
+	fech
+
+	checkout
+
+		-b
+	
+	status
+
+	branch
+		-D
+
+
+
+
+# Set Up Git
+
+	At the heart of GitHub is an open source version control system(VCS) called Git.
+	Git is responsible for everything GitHub-related that happens locally on your computer.
+
+	If you're not comfotable using the command line right now,
+	GitHub lets you complete many Git-related actions without using the command line. includeing:
+	
+		> Creating a repositroy
+		> Forking a repository
+		> Begin social
+
+	However, if you find that you need to use Git.
+	we can help you set it up!
+
+
+	# Setting up Git
+		
+		1. Download and install the latest version of Git.
+
+		2. On your computer, opne your command line application.
+
+		3. Tell Git your name so your commits will be properly labeled. Type everything after the [$] here:
+			[$] git config --global user.name "YOUR NAME"
+
+		4. Tell Git the email address that will be associated with your Git commits.
+			The email you specify should be the same one found in your email settings.
+			To keep your email address hidden, see "keeping your email address private".
+			[$] git config --global user.email "YOUR EMAIL ADDRESS" 
+
+	# Next steps: Authenticating with GitHub from Git
+
+		When you connect to a GitHub repository form Git.
+		you'll need to authenticate with GitHub using either HTTPS or SSH.
+
+
+		Connecting over HTTPS(recommended)
+
+			If you clone with HTTPS, 
+			you can cahe your GitHub password in Git using a credential helper.
+
+
+		Connecting over SSH
+		
+			If you clone with SSH. 
+			you must geenerate SSH keys on each computer you use to push or pull form GitHub.
+
+
+
+	# Celebrate
+
+		Congratuations, you now have Git and GitHub all set up! 
+		What do you want to do next?
+
+			> Set Up Git
+			> Create A Repository
+			> Fork A Repository
+			> Be Social
+
+
+
+# Which remote URL should I use?
+
+	There are several ways to clone repositories available on GitHub.
+
+	When you vew a repository while signed in to your account, 
+	the sidebar shows a choice of URLs you can use to clone the project onto your computer:
+
+
+	For information on setting or changing your remote URL, see "Changing a remote's URL."
+
+
+	# Cloning with HTTPS(recommended)
+
+		The https:// clone URLs are avalable on all repositoris, public and private.
+		They are smart, so they will provide you with either read-only or read/write access, 
+		depending on your permissions to the repository.
+
+		These URLs work everywhere--even if you are behind a firewall or proxy.
+		In certain cases, if you'd rather use SSH, 
+		you might be able to use SSH over the HTTPS port.
+
+		When you git fetch, git pull, or git push to the remote repository using HTTPS,
+		you'll be asked for your GitHub username and password.
+
+			> If you have two-factor authentication enabled, you must create a psersonal token to 
+				use instead of your GitHub password.
+
+			> You can use a credential helper so Git will remember your GitHub username and password
+				every time it talks to GitHub.
+
+
+
+	# Cloning with SSH
+
+		These URLs provie access to a Git repository via SSH. which a securee protocol.
+		To use these URLs, you must have an SSH keypair generated on your computer, and 
+		attached to your GitHub account.
+
+		The GitHub desktop clents automatically configure SSH keys for you, 
+		if you don't want to muck around on the command line.
+
+		*Tip: SSH URLs can be used locally, or as secure way fo deploying your code to production 
+				servers. You can also use SSH agent frwading with your deploy script to avoid managing keys ont the server.
+
+
+	# Cloning with Subversion
+
+		You can also use a Subversion client to access any repository on GitHub.
+		Subversion offers a vastly different feature set than Git:
+			for a quick overview, see "What are the differences between SVN and Git?."
+
+			
+# Generatiing SSH Keys 
+
+	SSH keys are a way to identify trusted computers, without involving passwords.
+	The steps below will walk you through generating an SSH key adding the public key to your
+	GitHub account.
+
+	We recommend that you regularly review your SSH keys list and revoke any that haven't been used in a while.
+
+
+	# Step1 : Check for SSH Keys
+
+		First, we need to check for existing SSH keys on your computer.
+		Open the command line and enter:
+
+			$ ls -al ~/.shh
+
+		Check the directory listing to see if you already have a public SSH key.
+		By default, the filenames of the public keys are one of the following:
+
+			id_dsa.pub
+			id_ecodsa.pub
+			id_ed25519.pub
+			id_rsa.pub
+
+		If you see an existing public and private key pair listed(for example id_ras.pub and id_rsa)
+		that you would like to use to connect to GitHub.
+		you can skip Step2 and go straight to Step3.
+
+		*Tip: If you receive an err that ~/.ssh doesn't exist. don't worry! We'll crate it the Step2.
+
+
+	# Step2 : Generate a new SSH key
+
+		1. With the command line still open, copy and paste the text below.
+			Make sure you substitute in your GitHub email address.
+
+			$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+			# Creates a new ssh key, using the provided email as a label
+
+		2. We strongly suggest keeping the default settings as they are, so when you're prompted to
+			"Enter a file in which to save the key", just press Enter to continue.
+
+			Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+
+
+		3. You'll be asked to enter a pressphrase.
+
+			Enter passphrase (empty for no passphrase): [Type a passphrase]
+			Enter same passphrase again: [Type a passphrase]
+
+			*Tip: We strongly recommend a very good. secure passphrase. For more information,
+					see "Working with SSH key passphrase".
+
+		4. After you enter a passphrase, you'll be given the fingerprint. or id. of your SSH key.
+			It will look something like this:
+
+			Your identification has been saved in /Users/you/.ssh/id_rsa.
+			Your public key has been saved in /Users/you/.ssh/id_rsa.pub.
+			
+
+	# Step3 : Add your key to the ssh-agent
+		
+		To configure the ssh-agent program to use your SSH key:
+
+		1. Ensure ssh-agent is enabled.
+
+			# start the ssh-agent in the background
+			$ eval "$(ssh-agent -s)"
+	
+		2. Add your SSH key to the ssh-agent:
+		
+			$ ssh-add ~/.ssh/id_rsa
+
+		*Tip: If you didn't generate a new SSH key in Step2. and used an exsiting SSH key instead,
+				you will need to replace id_rsa in the above command with the namge of your existing private key file.
+
+
+	# Step4 : Add your SSH key to your account
+
+		To configure your GitHub account to use your SSH key:
+
+		1. In your favorite text editor. open the ~/.ssh/id_rsa.pub file
+
+		2. Select the entire contents of the file and copy it to your clipboard.
+			Do not add any newlines or whitespace.
+
+		
+		Add the copied key to GitHub:
+
+		1. In the top right corner of any page. click your profile photo, then click Settings.
+
+		2. In the user settings sidebar, click SSH keys.
+
+		3. Click Add SSH key.
+
+		4. In the Title field, add a descriptive label for the new key.
+			For example, if you're using a personal Mac, you might call this key "Personal MacBook Air".
+
+		5. Paste your key into the "Key" field.
+		
+		6. Click Add key.
+
+		7. Confirm the action by entering your GitHub password.
+
+
+	# Step5 : Test the connection
+
+		To make sure everything is working, you'll try to SSH into GitHub.
+		When you do this, you will be asked to authenticate this action using your password,
+		which is the SSH key passphrase you created earlier.
+
+		1. Open the command line and enter:
+
+			$ ssh -T git@github.com
+			# Attempts to ssh to GitHub
+
+		2. You may see this waring:
+
+			The authenticity of host 'github.com (xxx.xxx.xxx.xxx)' can't be established.
+			RSA key fingerprint is xx:xx:xx:xx:xx:xx:xx:xx:xx:.
+			Are you sure you want to continue connecting (yes/no)?
+
+			Verify the fingerprint in the message you see matches the following message, then type yes:
+
+			Hi username! You've successfully authenticated, but GitHub dose not provide shell access.
+
+		3. If the username in the message is yours, you've successfully set up your SSH key!
+
+			If you receive a message about "access denied," you can read these instructions for diagnosing the issue.
+			If you're switching from HTTPS to SSH, you'll now need to update your remote repository URLs.
+			For more information, see Changin a remote's URL.
+
+

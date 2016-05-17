@@ -1,0 +1,39 @@
+
+
+nmap [options] target
+
+	options
+		-A				OSとバージョンを検知しようとする
+		-sL				指定したネットワーク内のホスト一覧を表示する
+		-sP				pingに応答するホストの一覧を表示する（Pingスキャン）
+		-sS				TCPのSYNパケットを送ってSYN+ACKが返ってくるか調べる（TCP SYNスキャン/TCPハーフスキャン）
+		-sT				TCPでポートに接続できるかを調べる（TCP Connectスキャン）
+		-sV				ソフトウェア名とバージョンの表示を有効にする
+		-sU				UDPポートをスキャンする（UDPスキャン）
+		-sF				FINフラグだけのパケットを送って調べる（TCP FINスキャン）
+		-sN				まったくフラグなしのパケットを送って調べる（TCP Nullスキャン）
+		-sX				FIN/PSH/URGフラグを立てたパケットを送って調べる（Xmasスキャン）
+		-sA				ACKフラグだけのパケットを送って調べる（TCP ACKスキャン）
+		-b				FTP_HOST	FTP_HOSTのFTPサーバを利用して調べる（FTPバウンススキャン）
+		-O				OSを検出しようとする
+		-P0				Pingスキャンを行わない（アクティブなマシンを割り出すためのホスト発見プロセスが省略される）
+		-PS	[PORTLIST]	PORTLISTで指定したポート（デフォルトは80番）にSYNフラグ付きの空TCPパケットを送信する（TCP SYN Ping）
+		-PA [PORTLIST]	PORTLISTで指定したポート（デフォルトは80番）にACKフラグ付きの空TCPパケットを送信する（TCP ACK Ping）
+		-PU [PORTLIST]	PORTLISTで指定したポート（デフォルトは31338番）に空UDPパケットを送信する（UDP Ping）
+		-PE				ICMPタイプ8（エコー要求）パケットをターゲットに送信する（ICMP Ping）
+		-PR				IPベースのスキャンより高速なARPスキャンを行う（ARP Ping）
+		-n				DNSによる逆引き名前解決を行わない
+		-R				すべてのターゲットに対して常にDNSによる逆引き名前解決を行う
+		-p				PORT	スキャンするポートをPORTで指定する（1-1023、U:53,T:80）UはUDPポート、TはTCPポートを示す
+		-F				限定したポートのみ調べる（約1200ポート）
+		-r				調べるポートの順番を無作為（デフォルト）ではなく順に選ぶ
+
+
+	target
+		IPADDR						IPアドレスで指定する（「192.168.0.1-250」「192.168.0.1,3,5」といった指定も可能）
+		IPADDR/MASK					IPアドレスとサブネットマスクでネットワークの範囲を指定する
+		HOSTNAME/MASK				HOSTNAMEで指定したホストのIPアドレスとサブネットマスクでネットワークの範囲を指定する
+		-iL TARGETFILE				ファイルTARGETFILEから指定するターゲットを読み込む
+		-iR NUM						NUMで指定した数のホストを無作為に生成する（0なら無制限）
+		--exclude HOST...			指定したホストHOSTやネットワークをスキャン対象から除外する（","区切り）
+		--excludefile EXCLUDE_FILE	ファイルEXCLUDE_FILEから除外するターゲットを読み込む
