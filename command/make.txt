@@ -1,2 +1,2 @@
-FileFile NameNameFunctonsFunctons 
-$(dirdir names...)
+File NameFunctons
+$(dir names...)
